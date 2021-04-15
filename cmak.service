@@ -1,0 +1,17 @@
+[Unit]
+Description=cmak
+After=syslog.target
+After=network.target
+
+[Service]
+Type=simple
+Restart=on-failure
+PIDFile=/home/kafka/CMAK/target/universal/cmak-3.0.0.5/RUNNING_PID
+KillMode=control-group
+ExecStart=/home/kafka/CMAK/target/universal/cmak-3.0.0.5/bin/cmak
+ExecStop=/bin/kill -SIGTERM $MAINPID
+RestartSec=10s
+User=kafka
+Group=kafka
+
+[Install]
